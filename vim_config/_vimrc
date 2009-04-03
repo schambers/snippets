@@ -1,0 +1,29 @@
+
+set nocompatible
+source $VIMRUNTIME/vimrc_example.vim
+source $VIMRUNTIME/mswin.vim
+behave mswin
+
+set diffexpr=MyDiff()
+function MyDiff()
+    let opt = ''
+    if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
+    if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
+    silent execute '\"!C:\Program Files (x86)\vim\diff\" -a ' . opt . v:fname_in . ' ' . v:fname_new . ' > ' . v:fname_out
+endfunction
+
+set background=dark
+
+autocmd VimEnter * exe 'NERDTree' | wincmd l
+
+"let g:miniBufExplMapWindowNavArrows = 1
+
+set sw=2 " no of spaces for indenting
+set ts=2 " show \t as 2 spaces and treat 2 spaces as \t when deleting, etc..
+
+colorscheme vividchalk
+syntax on
+
+set number
+
+set gfn=Consolas:h12:cANSI
